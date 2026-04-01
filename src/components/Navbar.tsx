@@ -1,10 +1,10 @@
 import { Menu } from "lucide-react";
 
 const navItems = [
-  { label: "Serviços", href: "#servicos" },
-  { label: "Benefícios", href: "#beneficios" },
+  { label: "Recursos", href: "#servicos" },
+  { label: "Diferenciais", href: "#beneficios" },
   { label: "Como funciona", href: "#como-funciona" },
-  { label: "Depoimentos", href: "#depoimentos" },
+  { label: "Resultados", href: "#depoimentos" },
   { label: "FAQ", href: "#faq" },
 ];
 
@@ -30,7 +30,7 @@ export default function Navbar() {
 
         <div className="hidden md:block">
           <a href="#contato" className="btn-primary">
-            Agendar avaliação
+            Solicitar demonstração
           </a>
         </div>
 

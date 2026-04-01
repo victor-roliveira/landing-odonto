@@ -1,4 +1,4 @@
-import { Mail, MapPin, Phone, Stethoscope } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -9,8 +9,8 @@ export default function Footer() {
             <img src="/OdontoHub.png" alt="logomarca" width={200} />
           </div>
           <p className="mt-4 max-w-xs text-sm leading-7 text-navy-700/80">
-            Cuidado odontológico com foco em confiança, bem-estar e resultados
-            reais.
+            Plataforma completa para gestão de clínicas odontológicas, com foco
+            em organização, produtividade e crescimento sustentável.
           </p>
         </div>
 
@@ -18,10 +18,10 @@ export default function Footer() {
           <h3 className="font-semibold text-navy-900">Navegação</h3>
           <div className="mt-4 space-y-3 text-sm text-navy-700">
             <a href="#servicos" className="block hover:text-cyanBrand-600">
-              Serviços
+              Recursos
             </a>
             <a href="#beneficios" className="block hover:text-cyanBrand-600">
-              Benefícios
+              Diferenciais
             </a>
             <a href="#como-funciona" className="block hover:text-cyanBrand-600">
               Como funciona
@@ -41,24 +41,26 @@ export default function Footer() {
             </div>
             <div className="flex items-center gap-2">
               <Mail size={16} className="text-cyanBrand-600" />
-              contato@odontoprime.com
+              contato@odontohub.com
             </div>
           </div>
         </div>
 
         <div>
-          <h3 className="font-semibold text-navy-900">Endereço</h3>
+          <h3 className="font-semibold text-navy-900">Localização</h3>
           <div className="mt-4 flex items-start gap-2 text-sm leading-7 text-navy-700">
             <MapPin size={16} className="mt-1 shrink-0 text-cyanBrand-600" />
-            <span>Av. Exemplo, 250 - Sala 04, Salvador - BA</span>
+            <span>Salvador - BA, Brasil</span>
           </div>
         </div>
       </div>
 
       <div className="border-t border-navy-100 py-5">
         <div className="container-default flex flex-col items-center justify-between gap-3 text-sm text-navy-600 sm:flex-row">
-          <p>© 2026 OdontoPrime. Todos os direitos reservados.</p>
-          <p>Landing page em React + TypeScript + Tailwind.</p>
+          <p>© 2026 OdontoHub. Todos os direitos reservados.</p>
+          <p>
+            Desenvolvido por <strong>Brothers</strong> Company
+          </p>
         </div>
       </div>
     </footer>

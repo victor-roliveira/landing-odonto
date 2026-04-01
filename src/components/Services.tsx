@@ -6,6 +6,7 @@ import {
   Syringe,
   Hospital,
 } from "lucide-react";
+import { motion, type Variants } from "framer-motion";
 
 const services = [
   {
@@ -46,38 +47,88 @@ const services = [
   },
 ];
 
+const containerVariants: Variants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.12,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut" as const,
+    },
+  },
+};
+
 export default function Services() {
   return (
     <section id="servicos" className="bg-navy-50/50 py-20">
       <div className="container-default">
-        <div className="max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-cyanBrand-600">
+        <motion.div
+          className="max-w-3xl"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <motion.p
+            variants={itemVariants}
+            className="text-sm font-semibold uppercase tracking-[0.25em] text-cyanBrand-600"
+          >
             Recursos
-          </p>
-          <h2 className="section-title mt-3">
+          </motion.p>
+
+          <motion.h2 variants={itemVariants} className="section-title mt-3">
             Tudo o que sua clínica precisa para ganhar mais controle e
             eficiência
-          </h2>
-          <p className="section-subtitle">
+          </motion.h2>
+
+          <motion.p variants={itemVariants} className="section-subtitle">
             Estruturamos esta seção para apresentar os principais recursos do
             aplicativo, destacando organização, produtividade, automação e uma
             gestão mais simples para clínicas odontológicas.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <motion.div
+          className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.15 }}
+        >
           {services.map(({ icon: Icon, title, description }) => (
-            <article key={title} className="card">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-cyanBrand-50 text-cyanBrand-600">
+            <motion.article
+              key={title}
+              variants={itemVariants}
+              whileHover={{ y: -6, scale: 1.01 }}
+              transition={{ duration: 0.25, ease: "easeOut" as const }}
+              className="card"
+            >
+              <motion.div
+                className="flex h-14 w-14 items-center justify-center rounded-2xl bg-cyanBrand-50 text-cyanBrand-600"
+                whileHover={{ scale: 1.08, rotate: -4 }}
+                transition={{ duration: 0.2, ease: "easeOut" as const }}
+              >
                 <Icon size={24} />
-              </div>
+              </motion.div>
+
               <h3 className="mt-5 text-xl font-bold text-navy-900">{title}</h3>
+
               <p className="mt-3 text-sm leading-7 text-navy-700/80">
                 {description}
               </p>
-            </article>
+            </motion.article>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

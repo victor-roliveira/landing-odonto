@@ -19,7 +19,6 @@ export default function App() {
         <Services />
         <Benefits />
         <HowItWorks />
-        <Testimonials />
         <FAQ />
         <CTA />
       </main>

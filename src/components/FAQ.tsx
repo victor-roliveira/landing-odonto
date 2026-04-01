@@ -1,45 +1,91 @@
+import { motion, type Variants } from "framer-motion";
+
 const faqs = [
   {
-    question: "Quais tratamentos a clínica oferece?",
+    question: "O aplicativo é feito apenas para clínicas odontológicas?",
     answer:
-      "A clínica pode destacar serviços como limpeza, restauração, clareamento, ortodontia, implantes e odontopediatria.",
+      "Sim. A plataforma foi pensada para atender a rotina de clínicas odontológicas, com recursos voltados para agendamento, pacientes, prontuários, financeiro e organização operacional.",
   },
   {
-    question: "Como funciona o agendamento?",
+    question: "Como funciona a implantação na clínica?",
     answer:
-      "O visitante entra em contato pelo CTA principal, escolhe um horário disponível e recebe a confirmação pela equipe.",
+      "A configuração é simples e rápida. Em pouco tempo, sua equipe já pode começar a organizar a agenda, centralizar informações e usar o sistema no dia a dia.",
   },
   {
-    question: "A landing pode ser conectada ao WhatsApp?",
+    question: "É possível automatizar lembretes e confirmações?",
     answer:
-      "Sim. Basta trocar o link do botão principal pelo número ou URL de atendimento da clínica.",
+      "Sim. O aplicativo ajuda a reduzir faltas e retrabalho com automações de comunicação, facilitando confirmações e lembretes de consultas.",
   },
   {
-    question: "Posso adicionar fotos reais da clínica e da equipe?",
+    question: "O sistema ajuda no controle financeiro da clínica?",
     answer:
-      "Sim. Essa é uma das melhores melhorias para aumentar credibilidade e taxa de conversão.",
+      "Sim. Você pode acompanhar receitas, despesas e indicadores importantes para ter mais clareza sobre o desempenho financeiro da operação.",
   },
 ];
+
+const containerVariants: Variants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut" as const,
+    },
+  },
+};
 
 export default function FAQ() {
   return (
     <section id="faq" className="bg-navy-50/50 py-20">
       <div className="container-default">
-        <div className="max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-cyanBrand-600">
+        <motion.div
+          className="max-w-3xl"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <motion.p
+            variants={itemVariants}
+            className="text-sm font-semibold uppercase tracking-[0.25em] text-cyanBrand-600"
+          >
             FAQ
-          </p>
-          <h2 className="section-title mt-3">Perguntas frequentes</h2>
-          <p className="section-subtitle">
-            Inspirado no uso de FAQ da referência, este bloco ajuda a eliminar
-            dúvidas comuns antes do clique final. :contentReference[oaicite:1]
-          </p>
-        </div>
+          </motion.p>
 
-        <div className="mt-12 space-y-4">
+          <motion.h2 variants={itemVariants} className="section-title mt-3">
+            Perguntas frequentes
+          </motion.h2>
+
+          <motion.p variants={itemVariants} className="section-subtitle">
+            Reunimos aqui as dúvidas mais comuns para mostrar, de forma clara,
+            como o aplicativo pode simplificar a gestão, aumentar a
+            produtividade e apoiar o crescimento da sua clínica odontológica.
+          </motion.p>
+        </motion.div>
+
+        <motion.div
+          className="mt-12 space-y-4"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.15 }}
+        >
           {faqs.map((faq) => (
-            <div
+            <motion.div
               key={faq.question}
+              variants={itemVariants}
+              whileHover={{ y: -3 }}
+              transition={{ duration: 0.2, ease: "easeOut" as const }}
               className="rounded-3xl border border-navy-100 bg-white p-6 shadow-soft"
             >
               <h3 className="text-lg font-bold text-navy-900">
@@ -48,9 +94,9 @@ export default function FAQ() {
               <p className="mt-3 text-sm leading-7 text-navy-700/80">
                 {faq.answer}
               </p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
