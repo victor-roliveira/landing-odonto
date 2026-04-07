@@ -5,6 +5,8 @@ import {
   SmilePlus,
 } from "lucide-react";
 import { motion, type Variants } from "framer-motion";
+import { AnimatedGridPattern } from "@/components/ui/animated-grid-pattern";
+import { cn } from "@/lib/utils";
 
 const containerVariants: Variants = {
   hidden: {},
@@ -53,7 +55,20 @@ const floatingAnimation = {
 export default function Hero() {
   return (
     <section className="bg-hero-grid relative overflow-hidden">
-      <div className="container-default grid min-h-[88vh] items-center gap-12 py-16 lg:grid-cols-2 lg:py-24">
+      {/* BACKGROUND ANIMADO */}
+      <AnimatedGridPattern
+        numSquares={40}
+        maxOpacity={0.06}
+        duration={4}
+        repeatDelay={1}
+        className={cn(
+          "pointer-events-none absolute inset-0 h-full w-full skew-y-6 text-cyanBrand-400/60",
+          "[mask-image:radial-gradient(900px_circle_at_center,white,transparent)]",
+        )}
+      />
+
+      <div className="container-default relative z-10 grid min-h-[88vh] items-center gap-12 py-16 lg:grid-cols-2 lg:py-24">
+        {/* LEFT */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -96,7 +111,7 @@ export default function Hero() {
               whileTap={{ scale: 0.98 }}
             >
               Solicitar demonstração
-              <motion.span whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
+              <motion.span whileHover={{ x: 4 }}>
                 <ArrowRight size={18} />
               </motion.span>
             </motion.a>
@@ -126,6 +141,7 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
+        {/* RIGHT - PAINEL SEM MOLDURA */}
         <motion.div
           className="relative"
           variants={visualVariants}
@@ -134,146 +150,94 @@ export default function Hero() {
         >
           <motion.div
             animate={floatingAnimation}
-            className="rounded-[2rem] border border-white/10 bg-gradient-to-br from-navy-900 to-navy-800 p-4 shadow-glow"
+            className="space-y-4 rounded-[2rem] bg-white/70 p-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur"
           >
-            <div className="rounded-[1.6rem] bg-white p-5 sm:p-6">
-              <div className="rounded-[1.5rem] bg-gradient-to-br from-cyanBrand-50 to-navy-50 p-6 sm:p-8">
-                <div className="space-y-4">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                      delay: 0.28,
-                      duration: 0.5,
-                      ease: "easeOut" as const,
-                    }}
-                    className="flex items-center justify-between rounded-3xl bg-white px-5 py-4 shadow-[0_10px_30px_rgba(15,23,42,0.06)]"
-                  >
-                    <div>
-                      <p className="text-sm font-medium text-navy-500">
-                        Painel da clínica
-                      </p>
-                      <p className="mt-1 text-lg font-semibold text-navy-900">
-                        Visão completa da operação
-                      </p>
-                    </div>
+            {/* HEADER */}
+            <div className="flex items-center justify-between rounded-3xl bg-white/80 px-5 py-4 backdrop-blur">
+              <div>
+                <p className="text-sm font-medium text-navy-500">
+                  Painel da clínica
+                </p>
+                <p className="mt-1 text-lg font-semibold text-navy-900">
+                  Visão completa da operação
+                </p>
+              </div>
 
-                    <span className="rounded-full bg-cyanBrand-100 px-3 py-1 text-xs font-semibold text-cyanBrand-700">
-                      Em tempo real
-                    </span>
-                  </motion.div>
+              <span className="rounded-full bg-cyanBrand-100 px-3 py-1 text-xs font-semibold text-cyanBrand-700">
+                Em tempo real
+              </span>
+            </div>
 
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{
-                        delay: 0.38,
-                        duration: 0.5,
-                        ease: "easeOut" as const,
-                      }}
-                      className="rounded-3xl bg-navy-900/95 p-5 text-white shadow-[0_10px_30px_rgba(0,0,0,0.18)] backdrop-blur"
-                    >
-                      <p className="text-sm text-white/70">
-                        Consultas confirmadas
-                      </p>
-                      <p className="mt-2 text-3xl font-bold">128</p>
-                      <p className="mt-2 text-sm text-white/80">
-                        Agenda organizada com confirmações automáticas.
-                      </p>
-                    </motion.div>
+            {/* METRICS */}
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="rounded-3xl bg-navy-900/95 p-5 text-white shadow-lg backdrop-blur">
+                <p className="text-sm text-white/70">Consultas confirmadas</p>
+                <p className="mt-2 text-3xl font-bold">128</p>
+                <p className="mt-2 text-sm text-white/80">
+                  Agenda organizada com confirmações automáticas.
+                </p>
+              </div>
 
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{
-                        delay: 0.48,
-                        duration: 0.5,
-                        ease: "easeOut" as const,
-                      }}
-                      className="rounded-3xl bg-cyanBrand-500 p-5 text-white shadow-[0_10px_30px_rgba(6,182,212,0.22)]"
-                    >
-                      <p className="text-sm text-white/80">
-                        Produtividade da equipe
-                      </p>
-                      <p className="mt-2 text-3xl font-bold">+32%</p>
-                      <p className="mt-2 text-sm text-white/90">
-                        Mais eficiência na rotina clínica e administrativa.
-                      </p>
-                    </motion.div>
-                  </div>
+              <div className="rounded-3xl bg-cyanBrand-500 p-5 text-white shadow-lg">
+                <p className="text-sm text-white/80">Produtividade da equipe</p>
+                <p className="mt-2 text-3xl font-bold">+32%</p>
+                <p className="mt-2 text-sm text-white/90">
+                  Mais eficiência na rotina clínica.
+                </p>
+              </div>
+            </div>
 
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                      delay: 0.58,
-                      duration: 0.5,
-                      ease: "easeOut" as const,
-                    }}
-                    className="rounded-3xl bg-white p-5 shadow-[0_10px_30px_rgba(15,23,42,0.06)]"
-                  >
-                    <div className="flex items-center justify-between gap-3">
-                      <div>
-                        <p className="text-sm font-medium text-navy-500">
-                          Fluxo operacional
-                        </p>
-                        <h3 className="mt-1 text-xl font-bold text-navy-900">
-                          Tudo centralizado em um só lugar
-                        </h3>
-                      </div>
+            {/* FLOW */}
+            <div className="rounded-3xl bg-white/80 p-5 backdrop-blur">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-navy-500">Fluxo operacional</p>
+                  <h3 className="mt-1 text-lg font-bold text-navy-900">
+                    Tudo centralizado em um só lugar
+                  </h3>
+                </div>
 
-                      <span className="rounded-full bg-navy-100 px-3 py-1 text-xs font-semibold text-navy-700">
-                        SaaS odontológico
-                      </span>
-                    </div>
+                <span className="rounded-full bg-navy-100 px-3 py-1 text-xs text-navy-700">
+                  SaaS odontológico
+                </span>
+              </div>
 
-                    <div className="mt-5 grid gap-3 sm:grid-cols-3">
-                      <div className="rounded-2xl border border-white/40 bg-white/70 px-4 py-3 backdrop-blur">
-                        <p className="text-xs font-medium uppercase tracking-[0.15em] text-navy-500">
-                          Agenda
-                        </p>
-                        <p className="mt-2 text-sm font-semibold text-navy-900">
-                          Consultas e retornos
-                        </p>
-                      </div>
+              <div className="mt-5 grid gap-3 sm:grid-cols-3">
+                <div className="rounded-2xl bg-white/70 px-4 py-3 backdrop-blur">
+                  <p className="text-xs text-navy-500">AGENDA</p>
+                  <p className="mt-1 text-sm font-semibold text-navy-900">
+                    Consultas
+                  </p>
+                </div>
 
-                      <div className="rounded-2xl border border-white/40 bg-white/70 px-4 py-3 backdrop-blur">
-                        <p className="text-xs font-medium uppercase tracking-[0.15em] text-navy-500">
-                          Pacientes
-                        </p>
-                        <p className="mt-2 text-sm font-semibold text-navy-900">
-                          Histórico centralizado
-                        </p>
-                      </div>
+                <div className="rounded-2xl bg-white/70 px-4 py-3 backdrop-blur">
+                  <p className="text-xs text-navy-500">PACIENTES</p>
+                  <p className="mt-1 text-sm font-semibold text-navy-900">
+                    Histórico
+                  </p>
+                </div>
 
-                      <div className="rounded-2xl border border-white/40 bg-white/70 px-4 py-3 backdrop-blur">
-                        <p className="text-xs font-medium uppercase tracking-[0.15em] text-navy-500">
-                          Financeiro
-                        </p>
-                        <p className="mt-2 text-sm font-semibold text-navy-900">
-                          Controle e previsibilidade
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
+                <div className="rounded-2xl bg-white/70 px-4 py-3 backdrop-blur">
+                  <p className="text-xs text-navy-500">FINANCEIRO</p>
+                  <p className="mt-1 text-sm font-semibold text-navy-900">
+                    Controle
+                  </p>
                 </div>
               </div>
             </div>
           </motion.div>
 
+          {/* BADGE */}
           <motion.div
             initial={{ opacity: 0, x: -20, y: 20 }}
             animate={{ opacity: 1, x: 0, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" as const }}
-            className="absolute -bottom-6 -left-6 hidden rounded-3xl border border-cyanBrand-100/60 bg-white p-4 shadow-[0_10px_30px_rgba(15,23,42,0.06)] sm:block"
+            transition={{ delay: 0.8 }}
+            className="absolute -bottom-6 -left-6 hidden rounded-3xl bg-white p-4 shadow-lg sm:block"
           >
-            <p className="text-xs font-medium uppercase tracking-[0.2em] text-cyanBrand-700">
+            <p className="text-xs text-cyanBrand-700 uppercase">
               Plataforma premium
             </p>
-            <p className="mt-2 text-sm text-navy-700">
-              Gestão inteligente para clínicas odontológicas.
-            </p>
+            <p className="mt-1 text-sm text-navy-700">Gestão inteligente</p>
           </motion.div>
         </motion.div>
       </div>
